@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="5.0">
+
+	<!-- 
+		web.xml
+			- 웹 애플리케이션 설정 파일이다.
+			- 배포 기술자(Deployment Descriptor파일 || DD파일)이다.
+			
+			- 웹 애플리케이션의 초기화 파라미터값을 정의한다.
+			- 사용자정의 Servlet을 배포한다.
+			- 사용자정의 Filter를 배포한다.
+			- 사용자정의 Listener를 배포한다.
+			- 예외처리를 정의한다.
+			
+	 -->
+	 
+	 <!-- 
+	 	웹 애플리케이션의 초기화 파라미터값을 정의 
+	 		*아래에 설정된 정보는 ServletContext 객체에 초기화 파라미터 값으로 저장된다.
+	 -->
+	 <context-param>
+		 <param-name>adminEmail</param-name>
+		 <param-value>admin@gmail.com/</param-value>
+	 </context-param>
+	 <context-param>
+		 <param-name>adminTel</param-name>
+		 <param-value>010-1234-5678</param-value>
+	 </context-param>
+
+
+	<!-- 
+		사용자정의 서블릿 배포하기
+		
+		* app.Sample2Servlet클래스를 sample이라는 이름으로 배포한다.
+		* /sample2 url패턴의 요청url이 접수되면 sample이라는 이름으로 배포된 서블릿을 실행한다.
+		* <init-param>은 Sample2Servlet 전용의 초기화 파라미터값을 정의한다.
+	 -->
+	<servlet>
+		<servlet-name>sample</servlet-name>
+		<servlet-class>app.Sample2Servlet</servlet-class>
+		<!-- 서블릿의 초기화 파라미터 정의 -->
+		<init-param>
+			<param-name>maxUploadSize</param-name>
+			<param-value>1000000</param-value>
+		</init-param>
+		<init-param>
+			<param-name>saveDirectory</param-name>
+			<param-value>c:\\data\\files</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>sample</servlet-name>
+		<url-pattern>/sample2</url-pattern>
+	</servlet-mapping>
+</web-app>
+
+
+
+
+
+
+
+
+
+
